@@ -1,0 +1,39 @@
+.card {
+  /* border: 1px solid var(--primary); */
+  box-shadow: 0px 1px 5px rgb(151, 151, 151);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  border-radius: 10px;
+  margin: 10px;
+  height: 370px;
+  width: 300px;
+  border-radius: 30px;
+  background: var(--second);
+  box-shadow: -15px -15px 30px #ffebca, 15px 15px 30px #ffca75;
+  transition: all 0.5s ease;
+}
+.card:hover {
+  box-shadow: 15px 15px 30px #ffca75;
+}
+.image {
+  height: 200px;
+  border-radius: 15px;
+}
+.addCartBtn {
+  background: linear-gradient(90deg, var(--CTA) 10%, var(--Accent) 100%);
+  width: 280px;
+  text-align: center;
+  padding: 7px;
+  border-radius: 10px;
+  margin: 8px;
+  /* color: var(--TEXT); */
+  font-weight: 800;
+  color: #ffffff;
+  font-size: 18px;
+}
+/* .card:hover {
+  scale: 1.02;
+} */

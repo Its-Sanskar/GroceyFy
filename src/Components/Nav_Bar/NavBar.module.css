@@ -1,0 +1,53 @@
+.container {
+  position: sticky;
+  top: 0;
+  display: flex;
+  justify-content: space-between;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.05), 0 4px 6px rgba(0, 0, 0, 0.08);
+  border-radius: 20px;
+  padding: 0.8rem 1rem;
+  background-color: var(--secondry);
+  margin-bottom: 10px;
+  z-index: 999;
+  /* position: relative; */
+}
+.nav {
+  display: flex;
+  gap: 1rem;
+  list-style: none;
+  padding: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+.nav > * {
+  margin: 5px;
+  color: var(--Text);
+  font-size: 1.2rem;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+}
+.logo {
+  margin-top: 16px;
+  color: var(--primary);
+  font-size: 2.5rem;
+  font-weight: 1000;
+  /* text-decoration: none; */
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+}
+.cart {
+  margin-left: 20px;
+  margin-top: -2px;
+}
+.bar {
+  background-color: #ff6f4363;
+  height: 50px;
+  width: 70px;
+  position: absolute;
+  border-radius: 10px;
+  border: 1px solid #ff6f43;
+  z-index: -1;
+  left: 0;
+}

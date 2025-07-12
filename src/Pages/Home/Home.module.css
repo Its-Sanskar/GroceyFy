@@ -1,0 +1,10 @@
+.container {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  /* gap: 1px; */
+}
+.textDeco {
+  text-decoration: none;
+  color: var(--Text);
+}
+

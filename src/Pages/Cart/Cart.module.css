@@ -1,0 +1,39 @@
+.img {
+  width: 150px;
+}
+.pdtContainer {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  /* background-color: red; */
+  margin: 10px;
+  box-shadow: 0px 1px 5px rgb(151, 151, 151);
+  color: var(--Text);
+  border-radius: 8px;
+  padding: 30px;
+  text-decoration: none;
+}
+.detail {
+  margin: 30px;
+}
+.contBtn {
+  display: flex;
+  justify-content: end;
+  align-items: center;
+  padding: 20px;
+  text-decoration: none;
+}
+.contBtn > button {
+  padding: 10px;
+  font-size: 20px;
+  cursor: pointer;
+}
+.noPro {
+  text-align: center;
+  background-color: #fee9c4;
+  color: var(--Text);
+  padding: 10px;
+  border-radius: 20px;
+  margin-left: 40px;
+  margin-right: 40px;
+}
