@@ -3,7 +3,7 @@ import style from "./Card.module.css";
 import { motion, scale } from "motion/react";
 import { useRecoilState } from "recoil";
 import { StoreData } from "../../StoreData/productData";
-import { img } from "motion/react-client";
+// import { img } from "motion/react-client";
 import Image from "../Image/Image";
 
 export default function ProductCard(props) {
@@ -15,7 +15,7 @@ export default function ProductCard(props) {
       initial={{ scale: 1 }}
       whileHover={{ scale: 1.02 }}
       whileTap={{ scale: 1.01 }}
-      transition={{duration:0.2}}
+      transition={{ duration: 0.2 }}
     >
       {product && (
         <div className={style.card}>

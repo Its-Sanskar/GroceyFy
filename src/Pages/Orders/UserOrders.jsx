@@ -12,6 +12,8 @@ export default function UserOrders() {
   const { token } = useRecoilValue(userData);
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(false);
+  console.log(token);
+
   useEffect(() => {
     setLoading(true);
     axios
