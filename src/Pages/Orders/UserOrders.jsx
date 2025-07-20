@@ -7,6 +7,7 @@ import Image from "../../Components/Image/Image";
 import style from "./UserOrders.module.css";
 import Loader from "../../Components/Loader/Loader/Loader";
 import { IoBagHandleOutline } from "react-icons/io5";
+import { date } from "../../StoreData/utilityFunctions";
 
 export default function UserOrders() {
   const { token } = useRecoilValue(userData);
@@ -29,14 +30,6 @@ export default function UserOrders() {
         setLoading(false);
       });
   }, []);
-  const date = (d) => {
-    let date = new Date(d);
-    return date.toLocaleDateString("en-IN", {
-      day: "2-digit",
-      month: "short",
-      year: "numeric",
-    });
-  };
 
   return (
     <div className="container">

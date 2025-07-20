@@ -6,7 +6,14 @@ export const PagesToggle = atom({
     logIn: false,
     signUp: false,
     sideBar: false,
-    tab: 0,
-    tabs: { home: 0, profile: 85, logIn: 165, signUp: 250,Orders:173 },
+    showQty: false,
+    tab: "",
+    tabs: {
+      "/": 0,
+      "/logIn": 80,
+      "/Orders": 85,
+      "/signUp": 164,
+      "/profile": 173,
+    },
   },
 });

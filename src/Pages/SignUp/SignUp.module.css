@@ -53,3 +53,9 @@
   align-items: center;
   width: 100%;
 }
+@media only screen and (max-width: 800px) {
+  .container {
+    height: 500px;
+    width: 300px;
+  }
+}

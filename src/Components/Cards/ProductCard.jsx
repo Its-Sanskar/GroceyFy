@@ -1,15 +1,30 @@
-import React, { useEffect } from "react";
 import style from "./Card.module.css";
-import { motion, scale } from "motion/react";
-import { useRecoilState } from "recoil";
-import { StoreData } from "../../StoreData/productData";
-// import { img } from "motion/react-client";
+import { motion } from "motion/react";
 import Image from "../Image/Image";
+import { StoreData } from "../../StoreData/productData";
+import { useRecoilState } from "recoil";
+import { PagesToggle } from "../../StoreData/PagesToggle";
 
 export default function ProductCard(props) {
-  const [detailProduct, setDetailProduct] = useRecoilState(StoreData);
   const product = props.product;
-
+  const [storeData, setStoreData] = useRecoilState(StoreData);
+  const [qtyShow, setQtyShow] = useRecoilState(PagesToggle);
+  function cartBtnHdl(e) {
+    e.stopPropagation();
+    setQtyShow({ ...qtyShow, showQty: true });
+    const newCart = [
+      ...storeData.cartProduct,
+      {
+        id: product.id,
+        qty: 1,
+      },
+    ];
+    localStorage.setItem("cart", JSON.stringify(newCart));
+    setStoreData({
+      ...storeData,
+      cartProduct: newCart,
+    });
+  }
   return (
     <motion.div
       initial={{ scale: 1 }}
@@ -19,13 +34,21 @@ export default function ProductCard(props) {
     >
       {product && (
         <div className={style.card}>
-          {/* <img src={product.images} /> */}
           <Image src={product.images[0]} css={style.image} />
           <h3>{product.name}</h3>
           <span>
             ₹{product.price}/{product.unit}
           </span>
-          <div className={style.addCartBtn}>Add To Cart</div>
+          <motion.button
+            whileTap={{ scale: 0.95 }}
+            onClick={(e) => {
+              e.preventDefault();
+              cartBtnHdl(e);
+            }}
+            className={style.addCartBtn}
+          >
+            Add To Cart
+          </motion.button>
         </div>
       )}
     </motion.div>

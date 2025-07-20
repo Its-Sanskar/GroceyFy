@@ -22,7 +22,6 @@ export default function Home() {
         console.log(respo.data.data);
 
         const products = respo.data.data;
-        const storeName = respo.data.storeName;
         setProductsData({ ...productsData, products });
         setLoading(false);
       })

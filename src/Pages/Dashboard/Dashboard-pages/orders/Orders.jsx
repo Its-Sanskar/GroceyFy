@@ -5,9 +5,10 @@ import { useRecoilValue } from "recoil";
 import { userData } from "../../../../StoreData/storeDetails";
 import { BiSolidShoppingBags } from "react-icons/bi";
 import { BsFillBoxSeamFill } from "react-icons/bs";
-
+import { FaRegCalendarAlt } from "react-icons/fa";
 import style from "./Orders.module.css";
 import OrdersLoader from "../../../../Components/Loader/OrdersLoader/OrdersLoader";
+import { date } from "../../../../StoreData/utilityFunctions";
 
 export default function Orders() {
   const { token } = useRecoilValue(userData);
@@ -42,10 +43,20 @@ export default function Orders() {
               <div className={style.user}>
                 <BsFillBoxSeamFill size={50} />
                 <div>
-                  <span>
-                    <b> {product.user.name} </b>
-                  </span>
-                  <span>{product.phone}</span>
+                  <div>
+                    <span>
+                      <b> {product.user.name} </b>
+                    </span>
+                    <span>{product.phone}</span>
+                  </div>
+                  <div>
+                    <span>
+                      <FaRegCalendarAlt /> {date(product.createdAt)}
+                    </span>
+                    <span>
+                      <b>{product.address}</b>
+                    </span>
+                  </div>
                 </div>
               </div>
               <table className={style.table}>

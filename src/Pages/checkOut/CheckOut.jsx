@@ -6,6 +6,7 @@ import { Urls } from "../../StoreData/Apis";
 import { userData } from "../../StoreData/storeDetails";
 import style from "./CheckOut.module.css";
 import CheckOutL from "../../Components/Loader/CheckOutL/CheckOutL";
+import { decimalizer } from "../../StoreData/utilityFunctions";
 export default function CheckOut() {
   const [productData, setProductData] = useRecoilState(StoreData);
   const { token } = useRecoilValue(userData);
@@ -77,7 +78,7 @@ export default function CheckOut() {
                 </span>
               </div>
               <span>
-                ₹{product.product.sellPrice}X{product.qty}
+                ₹{decimalizer(product.product.sellPrice)}X{product.qty}
               </span>
             </div>
           ))

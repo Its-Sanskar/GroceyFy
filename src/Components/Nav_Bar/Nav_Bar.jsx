@@ -9,90 +9,95 @@ import { useRecoilState, useRecoilValue } from "recoil";
 import { PagesToggle } from "../../StoreData/PagesToggle";
 import { userData } from "../../StoreData/storeDetails";
 import { motion } from "motion/react";
+import { StoreData } from "../../StoreData/productData";
 
 export default function NavBar() {
   const [pagesTgl, setPagesTgl] = useRecoilState(PagesToggle);
   const { user, isAuthenticated } = useRecoilValue(userData);
+  const cartData = useRecoilValue(StoreData);
+  const cartQty = cartData.cartProduct.length;
   const tab = pagesTgl.tab;
   const tabs = pagesTgl.tabs;
   const isSeller = user?.role === "SELLER";
+  useEffect(() => {
+    if (pagesTgl.showQty == true) {
+      setTimeout(() => {
+        setPagesTgl({ ...pagesTgl, showQty: false });
+      }, 1000);
+    }
+  }, [pagesTgl.showQty]);
   const logInToggle = () => {
     if (!pagesTgl.logIn) {
-      setPagesTgl({ ...pagesTgl, logIn: true, tab: tabs.logIn });
+      setPagesTgl({ ...pagesTgl, logIn: true, tab: "/logIn" });
     }
   };
   const signUpTgl = () => {
     setPagesTgl({ ...pagesTgl });
 
     if (!pagesTgl.signUp) {
-      setPagesTgl({ ...pagesTgl, signUp: true, tab: tabs.signUp });
+      setPagesTgl({ ...pagesTgl, signUp: true, tab: "/signUp" });
     }
   };
-  console.log(user);
-  console.log(isAuthenticated);
-
+  console.log(cartQty);
+  const isCartTab = tab === "/Cart";
   return (
     <div className={style.container}>
       <div className={style.logo}>GroceyFy</div>
       <div>
         <ul className={style.nav}>
-          <motion.div
-            initial={{ x: tab, scale: 0 }}
-            animate={{ x: tab, scale: 1 }}
-            className={style.bar}
-          ></motion.div>
+          {isCartTab ? (
+            <motion.div></motion.div>
+          ) : (
+            <motion.div
+              initial={{ x: tabs[tab], scale: 0 }}
+              animate={{ x: tabs[tab], scale: 1 }}
+              className={style.bar}
+            ></motion.div>
+          )}
+
           <Link to="/">
-            <li
-              onClick={() => {
-                setPagesTgl({ ...pagesTgl, tab: tabs.home });
-              }}
-            >
-              Home
-            </li>
+            <li>Home</li>
           </Link>
 
-          <li
-            onClick={() => {
-              setPagesTgl({ ...pagesTgl, tab: tabs.profile });
-            }}
-          >
-            Profile
-          </li>
-          {isSeller && (
-            <Link to="/Dashboard">
-              <li>Dashboard</li>
-            </Link>
-          )}
           {isAuthenticated ? (
-            <Link to="/Orders">
-              <li
-                onClick={() => {
-                  setPagesTgl({ ...pagesTgl, tab: tabs.Orders });
-                }}
-              >
-                Orders
-              </li>
-            </Link>
+            <>
+              <Link to="/Orders">
+                <li>Orders</li>
+              </Link>
+              <li>Profile</li>
+              {isSeller && (
+                <Link to="/Dashboard">
+                  <li>Dashboard</li>
+                </Link>
+              )}
+            </>
           ) : (
             <>
-              <li onClick={logInToggle} className={style.login}>
-                Login
-              </li>
+              <li onClick={logInToggle}>Login</li>
               <li onClick={signUpTgl}>Signup</li>
             </>
           )}
 
-          <Link
-            onClick={() => {
-              setTab(275);
-            }}
-            to="/Cart"
-          >
-            <FaCartArrowDown
-              className={style.cart}
-              size={40}
-              color="var(--Accent)"
-            />
+          <Link to="/Cart">
+            <motion.div
+              whileTap={{ scale: 1.2 }}
+              animate={isCartTab ? { scale: 1.2 } : { scale: 1 }}
+              transition={{ type: "spring", stiffness: 300, damping: 10 }}
+            >
+              {pagesTgl.showQty && (
+                <motion.span
+                  initial={{ y: 0, opacity: 0 }}
+                  animate={{ y: -20, opacity: 1 }}
+                  className={style.qtyC}
+                >
+                  {cartQty}
+                </motion.span>
+              )}
+              <FaCartArrowDown
+                className={style.cart}
+                color={isCartTab ? "var(--primary)" : "var(--Accent)"}
+              />
+            </motion.div>
           </Link>
         </ul>
       </div>

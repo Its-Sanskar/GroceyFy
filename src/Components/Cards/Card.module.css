@@ -7,16 +7,19 @@
   align-items: center;
   padding: 10px;
   border-radius: 10px;
-  margin: 10px;
+  /* margin: 10px; */
   height: 370px;
   width: 300px;
   border-radius: 30px;
   background: var(--second);
-  box-shadow: -15px -15px 30px #ffebca, 15px 15px 30px #ffca75;
+  box-shadow: -10px -10px 30px #ffd695;
   transition: all 0.5s ease;
 }
+.card > h3 {
+  text-align: center;
+}
 .card:hover {
-  box-shadow: 15px 15px 30px #ffca75;
+  box-shadow: 10px 10px 30px #ffca75;
 }
 .image {
   height: 200px;
@@ -29,11 +32,10 @@
   padding: 7px;
   border-radius: 10px;
   margin: 8px;
-  /* color: var(--TEXT); */
   font-weight: 800;
   color: #ffffff;
   font-size: 18px;
+  border: none;
 }
-/* .card:hover {
-  scale: 1.02;
-} */
+@media only screen and (max-width: 600px) {
+}

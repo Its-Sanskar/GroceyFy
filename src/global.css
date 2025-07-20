@@ -1,12 +1,8 @@
 body {
   margin: 0;
   padding: 0;
-  /* background: #fff3e0; */
   background: #fff3e0;
   font-family: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
-  /* display: flex;
-  justify-content: center;
-  text-align: center; */
 }
 
 :root {
@@ -37,6 +33,9 @@ body {
 .container {
   padding: 10px;
   padding-top: 80px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .error {
   text-align: center;

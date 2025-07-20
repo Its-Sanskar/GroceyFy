@@ -9,7 +9,6 @@ import { useNavigate } from "react-router";
 
 export default function SideBar() {
   const [sideBarTgl, setsideBarTgl] = useState(false);
-  const [refreshPage, setRefreshPage] = useState("");
   const navigate = useNavigate();
   const user = useRecoilValue(userData);
   const sideBarHdl = () => {

@@ -8,11 +8,13 @@ import { Urls } from "../../StoreData/Apis";
 import Image from "../../Components/Image/Image";
 import Loader from "../../Components/Loader/Loader/Loader";
 import { decimalizer } from "../../StoreData/utilityFunctions";
+import { PagesToggle } from "../../StoreData/PagesToggle";
 export default function ProductDetailPage() {
   const { id } = useParams();
   const [storeData, setStoreData] = useRecoilState(StoreData);
   const [Loading, setLoading] = useState(false);
   const [quantity, setQuantity] = useState(1);
+  const [qtyShow, setShowQty] = useRecoilState(PagesToggle);
 
   const product = storeData.product;
 
@@ -37,6 +39,7 @@ export default function ProductDetailPage() {
       ...storeData,
       cartProduct: newCart,
     });
+    setShowQty({ ...qtyShow, showQty: true });
   }
 
   return (

@@ -5,12 +5,17 @@
 }
 .user {
   display: flex;
-  justify-content: start;
   align-items: center;
+}
+.user > div > div {
+  display: flex;
+  flex-direction: column;
+  margin-left: 5px;
 }
 .user > div {
   display: flex;
-  flex-direction: column;
+  justify-content: space-between;
+  width: 100%;
 }
 .product {
   /* border: 1px solid; */
@@ -19,6 +24,7 @@
   width: 100vh;
   border-radius: 20px;
   background-color: rgb(247, 244, 240);
+  padding: 8px;
 }
 .tData * {
   text-align: center;
