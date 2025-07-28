@@ -11,19 +11,30 @@ export default function ProductCard(props) {
   const [qtyShow, setQtyShow] = useRecoilState(PagesToggle);
   function cartBtnHdl(e) {
     e.stopPropagation();
-    setQtyShow({ ...qtyShow, showQty: true });
-    const newCart = [
-      ...storeData.cartProduct,
-      {
-        id: product.id,
-        qty: 1,
-      },
-    ];
-    localStorage.setItem("cart", JSON.stringify(newCart));
+    const isAvilableInCart = storeData.cartProduct.some(
+      (pro) => pro.id === product.id
+    );
+    console.log(isAvilableInCart);
+    let upDateCart;
+    if (!isAvilableInCart) {
+      upDateCart = [
+        ...storeData.cartProduct,
+        {
+          id: product.id,
+          qty: 1,
+        },
+      ];
+    } else {
+      upDateCart = storeData.cartProduct.map((pro) =>
+        pro.id == product.id ? { ...pro, qty: pro.qty + 1 } : pro
+      );
+    }
+    localStorage.setItem("cart", JSON.stringify(upDateCart));
     setStoreData({
       ...storeData,
-      cartProduct: newCart,
+      cartProduct: upDateCart,
     });
+    setQtyShow({ ...qtyShow, showQty: true, notify: true });
   }
   return (
     <motion.div

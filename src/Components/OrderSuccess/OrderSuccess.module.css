@@ -1,0 +1,49 @@
+.background {
+  margin: 0;
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 999;
+  background-color: rgba(0, 0, 0, 0.137);
+}
+.container {
+  position: absolute;
+  z-index: 999;
+  margin-top: 10rem;
+  /* background-color: rgba(255, 251, 251, 0.212); */
+  background-color: white;
+  --blur: 0px;
+  backdrop-filter: blur(var(--blur));
+  transition: backdrop-filter 0.2s ease;
+  width: 40vw;
+  height: 70vh;
+  border-radius: 50px;
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: center;
+  padding: 10px;
+  color: var(--Text);
+}
+.icon {
+  color: white;
+  background-color: var(--Accent);
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+}
+.info {
+  width: 100%;
+  background-color: var(--secondry);
+  border-radius: 10px;
+}
+/* .info td {
+  background-color: red;
+} */

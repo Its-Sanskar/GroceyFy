@@ -18,8 +18,8 @@
   --blur: 0px;
   backdrop-filter: blur(var(--blur));
   transition: backdrop-filter 0.2s ease-in;
-  height: 500px;
-  width: 800px;
+  width: 70vw;
+  height: 50vh;
   border-radius: 50px;
   display: flex;
   flex-direction: column;
@@ -60,7 +60,7 @@
   margin-top: -200px;
   /* padding: 50px; */
 }
-@media only screen and (max-width: 800px) {
+@media only screen and (max-width: 600px) {
   .container {
     height: 500px;
     width: 300px;

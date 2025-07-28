@@ -5,9 +5,11 @@
   display: flex;
   justify-content: start;
   align-items: center;
-  /* background-color: red; */
+  width: 90vw;
   margin: 10px;
-  box-shadow: 0px 1px 5px rgb(151, 151, 151);
+  box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1);
+  background-color: #ffefd6;
+
   color: var(--Text);
   border-radius: 8px;
   padding: 30px;
@@ -37,4 +39,16 @@
   margin-left: 40px;
   margin-right: 40px;
   width: 100%;
+}
+.loader {
+  margin-top: 30px;
+}
+@media only screen and (max-width: 600px) {
+  .detail {
+    margin: 30px;
+    width: 200px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
 }

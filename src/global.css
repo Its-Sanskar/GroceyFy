@@ -14,15 +14,16 @@ body {
 }
 .button {
   background: linear-gradient(90deg, var(--CTA) 10%, var(--Accent) 100%);
-  width: 140px;
   text-align: center;
-  padding: 5px;
+  padding: 10px;
   border-radius: 10px;
   margin: 8px;
-  /* color: var(--TEXT); */
   font-weight: 600;
   color: #ffffff;
   font-size: 16px;
+  outline: none;
+  border: none;
+  
 }
 .loader {
   margin: auto;
@@ -34,6 +35,7 @@ body {
   padding: 10px;
   padding-top: 80px;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
 }

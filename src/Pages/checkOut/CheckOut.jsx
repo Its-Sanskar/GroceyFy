@@ -7,11 +7,16 @@ import { userData } from "../../StoreData/storeDetails";
 import style from "./CheckOut.module.css";
 import CheckOutL from "../../Components/Loader/CheckOutL/CheckOutL";
 import { decimalizer } from "../../StoreData/utilityFunctions";
+import { motion } from "motion/react";
+import OrderSuccess2 from "../../Components/OrderSuccess/OrderSuccess2";
+import { PagesToggle } from "../../StoreData/PagesToggle";
 export default function CheckOut() {
-  const [productData, setProductData] = useRecoilState(StoreData);
-  const { token } = useRecoilValue(userData);
+  const productData = useRecoilValue(StoreData);
+  const { token, phone, address } = useRecoilValue(userData);
   const [checkOutP, setCheckOutP] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [price, setPrice] = useState({ mrp: 0, sellPrice: 0 });
+  const [orderSuccess, setOrderSuccess] = useRecoilState(PagesToggle);
   console.log(productData.cartProduct);
   useEffect(() => {
     setLoading(true);
@@ -29,6 +34,17 @@ export default function CheckOut() {
             pro = [...pro, { product, qty: result.qty }];
           }
         });
+        let sellPrice = 0;
+        let mrp = 0;
+        pro.map((pro) => {
+          sellPrice = sellPrice + pro.product.sellPrice * pro.qty;
+          mrp = mrp + pro.product.price * pro.qty;
+          console.log(pro);
+        });
+        sellPrice = decimalizer(sellPrice);
+        mrp = decimalizer(mrp);
+        setPrice({ ...price, mrp, sellPrice });
+
         setCheckOutP(pro);
         setLoading(false);
       })
@@ -36,14 +52,16 @@ export default function CheckOut() {
         console.log(e);
       });
   }, []);
+  console.log(checkOutP);
+
   function placeOrderHdl() {
     const payLoad = {
       products: productData.cartProduct.map((product) => ({
         id: product.id,
         quantity: product.qty,
       })),
-      phone: "9340188888",
-      address: "Jabalpur, Barela (M.P)",
+      phone: phone,
+      address: address,
     };
     console.log(payLoad);
 
@@ -55,12 +73,14 @@ export default function CheckOut() {
       })
       .then((respo) => {
         console.log(respo);
+        setOrderSuccess({ ...orderSuccess, orderSuccess: true });
       })
       .catch((e) => {
         console.log(e);
       });
   }
   console.log(checkOutP);
+  console.log(price);
 
   return (
     <div className="container">
@@ -84,13 +104,21 @@ export default function CheckOut() {
           ))
         )}
         <hr />
-        <h3>Total:</h3>
+        <div className={style.total}>
+          <h3 style={{ color: "var(--primary)" }}>Total:</h3>
+          <h3 style={{ color: "var(--Accent)" }}>₹{price.mrp}</h3>
+        </div>
+        <div className={style.total}>
+          <h3 style={{ color: "var(--primary)" }}>Amount TO Pay:</h3>
+          <h3 style={{ color: "var(--Accent)" }}>₹{price.sellPrice}</h3>
+        </div>
       </div>
       <div className={style.button}>
         <button className="button" onClick={placeOrderHdl}>
           Order Place
         </button>
       </div>
+      <OrderSuccess2 price={price} />
     </div>
   );
 }

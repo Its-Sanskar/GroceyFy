@@ -13,7 +13,6 @@ export default function UserOrders() {
   const { token } = useRecoilValue(userData);
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(false);
-  console.log(token);
 
   useEffect(() => {
     setLoading(true);
@@ -35,11 +34,13 @@ export default function UserOrders() {
     <div className="container">
       <div className={style.container}>
         <div className={style.head}>
-          <h1>Orders</h1> <hr color="#654f4a" />
+          <h1>Orders</h1> <hr color="white" />
         </div>
 
         {loading ? (
-          <Loader />
+          <div className={style.loader}>
+            <Loader />
+          </div>
         ) : (
           products.map((product) => (
             <div key={product.id} className={style.product}>

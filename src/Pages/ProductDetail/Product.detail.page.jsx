@@ -9,6 +9,7 @@ import Image from "../../Components/Image/Image";
 import Loader from "../../Components/Loader/Loader/Loader";
 import { decimalizer } from "../../StoreData/utilityFunctions";
 import { PagesToggle } from "../../StoreData/PagesToggle";
+import { motion } from "motion/react";
 export default function ProductDetailPage() {
   const { id } = useParams();
   const [storeData, setStoreData] = useRecoilState(StoreData);
@@ -27,19 +28,30 @@ export default function ProductDetailPage() {
     });
   }, []);
   function cartBtnHdl() {
-    const newCart = [
-      ...storeData.cartProduct,
-      {
-        id: product.id,
-        qty: quantity,
-      },
-    ];
-    localStorage.setItem("cart", JSON.stringify(newCart));
+    const isAvilableInCart = storeData.cartProduct.some(
+      (pro) => pro.id === product.id
+    );
+    console.log(isAvilableInCart);
+    let upDateCart;
+    if (!isAvilableInCart) {
+      upDateCart = [
+        ...storeData.cartProduct,
+        {
+          id: product.id,
+          qty: quantity,
+        },
+      ];
+    } else {
+      upDateCart = storeData.cartProduct.map((pro) =>
+        pro.id == id ? { ...pro, qty: pro.qty + quantity } : pro
+      );
+    }
+    localStorage.setItem("cart", JSON.stringify(upDateCart));
     setStoreData({
       ...storeData,
-      cartProduct: newCart,
+      cartProduct: upDateCart,
     });
-    setShowQty({ ...qtyShow, showQty: true });
+    setShowQty({ ...qtyShow, showQty: true, notify: true });
   }
 
   return (
@@ -69,7 +81,8 @@ export default function ProductDetailPage() {
                 {product.unit}
               </span>
               <div className={style.counter}>
-                <button
+                <motion.button
+                  whileTap={{ scale: 0.9 }}
                   className="button"
                   onClick={() => {
                     if (quantity > 1) {
@@ -78,22 +91,29 @@ export default function ProductDetailPage() {
                   }}
                 >
                   -
-                </button>
+                </motion.button>
                 <span>{quantity}</span>
-                <button
+                <motion.button
+                  whileTap={{ scale: 0.9 }}
                   className="button"
                   onClick={() => {
                     setQuantity(quantity + 1);
                   }}
                 >
                   +
-                </button>
+                </motion.button>
               </div>
             </div>
-            <div className={style.btn}>Buy Now</div>
-            <div className={style.btn} onClick={cartBtnHdl}>
+            <motion.div whileTap={{ scale: 0.97 }} className={style.btn}>
+              Buy Now
+            </motion.div>
+            <motion.div
+              whileTap={{ scale: 0.97 }}
+              className={style.btn}
+              onClick={cartBtnHdl}
+            >
               Add To Cart
-            </div>
+            </motion.div>
           </div>
         </div>
       )}

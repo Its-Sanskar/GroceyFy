@@ -7,4 +7,5 @@ export const Urls = {
   productDetail: (id) => `${Main_api}/products/${id}`,
   placeOrder: `${Main_api}/orders`,
   orders: `${Main_api}/orders`,
+  profile: (id) => `${Main_api}/users/profile/${id}`,
 };

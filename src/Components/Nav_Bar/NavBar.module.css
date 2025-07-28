@@ -10,9 +10,6 @@
   background-color: var(--secondry);
   margin-bottom: 10px;
   z-index: 999;
-  /* width: 100%; */
-  /* background-color: red; */
-  /* position: relative; */
 }
 
 .nav {
@@ -37,7 +34,6 @@
   color: var(--primary);
   font-size: 2.5rem;
   font-weight: 1000;
-  /* text-decoration: none; */
   font-family: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
 }
 .cart {
@@ -60,8 +56,15 @@
   position: absolute;
   text-align: center;
   width: 50px;
+  color: var(--Accent);
 }
-@media only screen and (max-width: 800px) {
+/* .notify {
+  position: fixed;
+  right: 10px;
+  top: 0;
+  z-index: -99;
+} */
+@media only screen and (max-width: 600px) {
   .logo {
     font-size: 25px;
   }
@@ -81,5 +84,6 @@
   }
   .qtyC {
     width: 26px;
+    color: var(--Accent);
   }
 }

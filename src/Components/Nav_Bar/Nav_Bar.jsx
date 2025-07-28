@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from "react";
+import { useEffect } from "react";
 import style from "./NavBar.module.css";
 import { FaCartArrowDown } from "react-icons/fa6";
-import { Link, Links } from "react-router";
+import { Link } from "react-router";
 import LogIn from "../../Pages/LoginPage/LogIn2";
 import { AnimatePresence } from "motion/react";
 import SignUp from "../../Pages/SignUp/SignUp";
@@ -38,16 +38,17 @@ export default function NavBar() {
       setPagesTgl({ ...pagesTgl, signUp: true, tab: "/signUp" });
     }
   };
-  console.log(cartQty);
-  const isCartTab = tab === "/Cart";
+  const isCartTab = tab == "/Cart";
+  const isTabIndicActiv =
+    tab == "/Cart" || tab.startsWith("/Product/") || tab == "/Check_Out";
+  console.log(tab);
+
   return (
     <div className={style.container}>
       <div className={style.logo}>GroceyFy</div>
       <div>
         <ul className={style.nav}>
-          {isCartTab ? (
-            <motion.div></motion.div>
-          ) : (
+          {!isTabIndicActiv && (
             <motion.div
               initial={{ x: tabs[tab], scale: 0 }}
               animate={{ x: tabs[tab], scale: 1 }}
@@ -64,7 +65,10 @@ export default function NavBar() {
               <Link to="/Orders">
                 <li>Orders</li>
               </Link>
-              <li>Profile</li>
+              <Link to="/Profile">
+                <li>Profile</li>
+              </Link>
+
               {isSeller && (
                 <Link to="/Dashboard">
                   <li>Dashboard</li>

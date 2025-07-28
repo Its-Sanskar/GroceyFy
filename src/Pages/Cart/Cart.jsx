@@ -41,7 +41,7 @@ export default function Cart() {
     <div className="container">
       {cartData.length ? (
         loading ? (
-          <Loader />
+          <Loader className={style.loader} />
         ) : (
           <div>
             <div className={style.contBtn}>
@@ -75,7 +75,7 @@ export default function Cart() {
                 </Link>
               ))}
 
-            <Link to="/Check Out" className={style.contBtn}>
+            <Link to="/Check_Out" className={style.contBtn}>
               <button className="button">Proceed To Buy</button>
             </Link>
           </div>

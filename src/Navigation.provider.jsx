@@ -1,11 +1,5 @@
 import React, { useEffect } from "react";
-import {
-  BrowserRouter,
-  Routes,
-  Route,
-  Navigate,
-  useLocation,
-} from "react-router";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router";
 import NavBar from "./Components/Nav_Bar/Nav_Bar";
 import Home from "./Pages/Home/Home";
 import ProductDetailPage from "./Pages/ProductDetail/Product.detail.page";
@@ -18,21 +12,26 @@ import CheckOut from "./Pages/checkOut/CheckOut";
 import UserOrders from "./Pages/Orders/UserOrders";
 import Orders from "./Pages/Dashboard/Dashboard-pages/orders/Orders";
 import AuthenticatedRoutes from "./AuthenticatedRoutes";
+import Notify from "./Components/Notification/Notify";
 import PathProvider from "./Path.Provider";
+import UserProfile from "./Pages/UserProfile/UserProfile";
+import PlaceHolder from "./Pages/PlaceHolder/PlaceHolder";
 
 export default function Navigationprovider() {
   return (
     <BrowserRouter>
       <NavBar />
       <SideBar />
+      <Notify />
       <PathProvider />
+      <PlaceHolder />
       <Routes>
         <Route path="/" Component={Home}></Route>
         <Route path="/Product/:id" Component={ProductDetailPage}></Route>
         <Route path="/Cart" Component={Cart}></Route>
-
+        <Route path="/Profile" Component={UserProfile}></Route>
         <Route
-          path="/Check Out"
+          path="/Check_Out"
           element={
             <AuthenticatedRoutes>
               <CheckOut />
@@ -40,8 +39,22 @@ export default function Navigationprovider() {
           }
         ></Route>
 
-        <Route path="/Orders" Component={UserOrders}></Route>
-        <Route path="/Dashboard" Component={Dashboard}>
+        <Route
+          path="/Orders"
+          element={
+            <AuthenticatedRoutes>
+              <UserOrders />
+            </AuthenticatedRoutes>
+          }
+        ></Route>
+        <Route
+          path="/Dashboard"
+          element={
+            <AuthenticatedRoutes>
+              <Dashboard />
+            </AuthenticatedRoutes>
+          }
+        >
           <Route path="" element={<Navigate to="Products" />} />
           <Route path="Products" Component={Products}></Route>
           <Route

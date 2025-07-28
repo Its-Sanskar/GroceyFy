@@ -20,34 +20,8 @@ export const userData = atom({
     user: userDataStor().user,
     token: userDataStor().accessToken,
     isAuthenticated: !!userDataStor().accessToken,
+    phone: "9340188888",
+    address: "Jabalpur, Barela (M.P)",
   },
 });
 
-export const LoginData = atom({
-  key: "userData",
-  default: {
-    users: [
-      {
-        city: "Delhi",
-        phoneNo: "9876543210",
-      },
-      {
-        city: "Mumbai",
-        phoneNo: "8765432109",
-      },
-      {
-        city: "Bangalore",
-        phoneNo: "7654321098",
-      },
-      {
-        city: "Hyderabad",
-        phoneNo: "6543210987",
-      },
-      {
-        city: "Kolkata",
-        phoneNo: "5432109876",
-      },
-    ],
-    login: {},
-  },
-});

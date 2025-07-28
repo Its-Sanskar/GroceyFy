@@ -1,12 +1,11 @@
 import React, { useState } from "react";
-import { motion, scale } from "motion/react";
+import { motion } from "motion/react";
 import style from "./SignUp.module.css";
 import { IoClose } from "react-icons/io5";
 import { useRecoilState } from "recoil";
 import { PagesToggle } from "../../StoreData/PagesToggle";
 import axios from "axios";
 import { Urls } from "../../StoreData/Apis";
-import { useNavigate } from "react-router";
 
 export default function SignUp() {
   const [signUpTgl, setSignUpTgl] = useRecoilState(PagesToggle);
@@ -15,7 +14,6 @@ export default function SignUp() {
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
-  const { tabs } = signUpTgl;
   function signUpHandle(e) {
     e.preventDefault();
     if (!name || !email || !password) {
@@ -34,7 +32,7 @@ export default function SignUp() {
         alert("Successfully Registered");
         setError(null);
         setSignUpTgl({ ...signUpTgl, signUp: false });
-        setSignUpTgl({ ...signUpTgl, logIn: true, tab: tabs.logIn });
+        setSignUpTgl({ ...signUpTgl, logIn: true, tab: "/logIn" });
       })
       .catch((e) => {
         setError(e.response.data.message);
@@ -56,18 +54,17 @@ export default function SignUp() {
         initial={{ opacity: 0, scale: 0, "--blur": "0px" }}
         animate={{ opacity: 1, scale: 1, "--blur": "8px" }}
         exit={{ opacity: 0, scale: 0, "--blur": "0px" }}
-        // transition={{ duration: 0.2, }}
         className={style.container}
       >
         <div className={style.cross}>
-          <motion.div whileHover={{scale:1.1}} whileTap={{ scale: 0.9 }}>
+          <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}>
             <IoClose
               size={50}
               onClick={() =>
                 setSignUpTgl({
                   ...signUpTgl,
                   signUp: false,
-                  tab: tabs.home,
+                  tab: "/",
                 })
               }
             />

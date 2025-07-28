@@ -6,11 +6,13 @@ import { IoClose } from "react-icons/io5";
 import { useRecoilValue } from "recoil";
 import { userData } from "../../StoreData/storeDetails";
 import { useNavigate } from "react-router";
+import { Avatars } from "../../StoreData/PagesToggle";
 
 export default function SideBar() {
   const [sideBarTgl, setsideBarTgl] = useState(false);
   const navigate = useNavigate();
   const user = useRecoilValue(userData);
+  const avatar = useRecoilValue(Avatars);
   const sideBarHdl = () => {
     if (!sideBarTgl) {
       setsideBarTgl(true);
@@ -29,7 +31,7 @@ export default function SideBar() {
         <div className={style.greet}>
           Hello! {user.isAuthenticated ? user.user.name : "User"}
         </div>
-        <img src="https://media.istockphoto.com/vectors/avatar-photo-placeholder-icon-design-vector-id1221380217?k=20&m=1221380217&s=612x612&w=0&h=avdFJ5PNo-CSkbUZzQ0Xm8h3u5BovGfSNDrfRicPDfY=" />
+        <img src={avatar.avatar} />
         <div className={style.sideBrBtn} onClick={sideBarHdl}>
           {sideBarTgl ? <IoClose size={30} /> : <VscThreeBars size={30} />}
         </div>

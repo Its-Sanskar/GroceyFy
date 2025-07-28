@@ -2,9 +2,8 @@ import React, { useId, useState } from "react";
 import style from "./LoginPage.module.css";
 import { motion, AnimatePresence } from "motion/react";
 import { useRecoilState } from "recoil";
-import { LoginData, userData } from "../../StoreData/storeDetails";
 import { IoClose } from "react-icons/io5";
-import { PagesToggle } from "../../StoreData/PagesToggle";
+import { Avatars, PagesToggle } from "../../StoreData/PagesToggle";
 import axios from "axios";
 import { Urls } from "../../StoreData/Apis";
 import { useNavigate } from "react-router";
@@ -15,6 +14,8 @@ export default function LogIn() {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [isLoading, setIsloading] = useState(false);
+  const [showAvatar, setShowAvatar] = useRecoilState(Avatars);
+
   const navigate = useNavigate();
   const { tabs } = pagesTgl;
 
@@ -43,9 +44,10 @@ export default function LogIn() {
         console.log(respo);
         setError(null);
         alert(respo.data.message);
-        setPagesTgl({ ...pagesTgl, logIn: false, tab: tabs.home });
+        setPagesTgl({ ...pagesTgl, logIn: false, tab: "/" });
         localStorage.setItem("User", JSON.stringify(respo.data));
-        navigate(0);
+        // navigate(0);
+        setShowAvatar({ ...showAvatar, avatarBox: true });
       })
       .catch((e) => {
         console.log(e);
@@ -76,7 +78,6 @@ export default function LogIn() {
           opacity: 1,
           "--blur": "8px",
         }}
-        // transition={{ duration: 0.1 }}
         exit={{ x: 370, y: -350, scale: 0, opacity: 0.2, "--blur": "0px" }}
         className={style.container}
       >
@@ -84,7 +85,7 @@ export default function LogIn() {
           <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}>
             <IoClose
               onClick={() => {
-                setPagesTgl({ ...pagesTgl, logIn: false, tab: tabs.home });
+                setPagesTgl({ ...pagesTgl, logIn: false, tab: "/" });
               }}
               size={50}
             />

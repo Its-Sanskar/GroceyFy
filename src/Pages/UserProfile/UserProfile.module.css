@@ -1,0 +1,85 @@
+.container {
+  width: 100vw;
+  color: var(--Text);
+}
+.head {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+}
+.head > h1 {
+  width: 85%;
+  display: flex;
+  justify-content: start;
+}
+.profileDtl {
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+.profileDtl > div {
+  width: 85%;
+  margin: 20px;
+  box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1);
+  padding: 10px;
+  border-radius: 20px;
+  color: var(--Text);
+  /* background-color: #fefbf8; */
+  background-color: white;
+
+  color: #654f4a;
+}
+
+.topBar img {
+  border-radius: 50%;
+  height: 80px;
+  width: 80px;
+}
+.edit {
+  position: absolute;
+  z-index: 50;
+  color: var(--primary);
+  margin-left: 40px;
+  margin-top: 40px;
+  transition: all 0.2s ease-in;
+}
+.edit:hover {
+  color: var(--Accent);
+}
+.topBar {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+}
+
+.topBar > div {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: start;
+  margin-left: 20px;
+  gap: 10px;
+}
+.topBar h2 {
+  margin: 0;
+  padding: 0;
+}
+.midBar {
+  display: flex;
+  flex-wrap: wrap;
+}
+.midBar > div {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: white;
+  width: 25vw;
+  height: 8vh;
+  margin: 10px;
+  box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 20px;
+  padding: 20px;
+}

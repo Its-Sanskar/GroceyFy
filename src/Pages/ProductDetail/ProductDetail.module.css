@@ -1,5 +1,4 @@
 .container {
-  padding: 50px;
   display: flex;
   /* justify-content: center; */
 }
@@ -52,8 +51,6 @@
   flex-direction: column;
   justify-content: space-around;
   align-items: baseline;
-  /* width: auto; */
-  /* margin-left: 50px; */
 }
 .price {
   display: flex;
@@ -71,6 +68,8 @@
 .counter > button {
   cursor: pointer;
   width: 50px;
+  outline: none;
+  border: none;
 }
 @media only screen and (max-width: 600px) {
   .container {
@@ -80,8 +79,7 @@
     align-items: center;
   }
   .imgContainer {
-    width:70%;
-
+    width: 70%;
   }
   .detail {
     width: 70%;
@@ -91,6 +89,6 @@
     font-size: 20px;
   }
   .btn {
-    width: 100%;
+    width: 96%;
   }
 }

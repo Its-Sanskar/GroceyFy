@@ -1,11 +1,23 @@
 .container {
   color: #654f4a;
+  width: 98vw;
 }
 
-.head > h1 {
-  margin: 0;
+.head > span {
+  /* margin-left: 10px; */
+  font-size: 35px;
+  font-weight: 800;
 }
-
+.head {
+  position: sticky;
+  top: 132px;
+  z-index: 50;
+  width: 100%;
+  background-color: var(--primary);
+  padding-bottom: 5px;
+  border-radius: 10px;
+  color: white;
+}
 .product {
   margin: 20px;
   box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1);
@@ -52,4 +64,7 @@
 }
 .bottom > span {
   margin: 8px;
+}
+.loader{
+  margin-top: 15px;
 }
