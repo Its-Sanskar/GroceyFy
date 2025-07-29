@@ -42,7 +42,10 @@ export default function NavBar() {
   };
   const isCartTab = tab == "/Cart";
   const isTabIndicActiv =
-    tab == "/Cart" || tab.startsWith("/Product/") || tab == "/Check_Out";
+    tab == "/Cart" ||
+    tab.startsWith("/Product/") ||
+    tab == "/Check_Out" ||
+    tab.startsWith("/Dashboard/");
   console.log(tab);
 
   return (
@@ -64,12 +67,16 @@ export default function NavBar() {
 
           {isAuthenticated ? (
             <>
-              <Link to="/Orders">
-                <li>Orders</li>
-              </Link>
-              <Link to="/Profile">
-                <li>Profile</li>
-              </Link>
+              {!isSeller && (
+                <>
+                  <Link to="/Orders">
+                    <li>Orders</li>
+                  </Link>
+                  <Link to="/Profile">
+                    <li>Profile</li>
+                  </Link>
+                </>
+              )}
 
               {isSeller && (
                 <Link to="/Dashboard">

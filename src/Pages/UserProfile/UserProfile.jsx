@@ -11,10 +11,7 @@ import { HiMiniDocumentCurrencyRupee } from "react-icons/hi2";
 import { RiShoppingCartLine } from "react-icons/ri";
 import { StoreData } from "../../StoreData/productData";
 import { Avatars } from "../../StoreData/PagesToggle";
-import PlaceHolder from "../PlaceHolder/PlaceHolder";
-import { AnimatePresence, motion } from "motion/react";
 import { MdEdit } from "react-icons/md";
-import { LiaUserEditSolid } from "react-icons/lia";
 
 export default function UserProfile() {
   const { user, token, details } = useRecoilValue(userData);
@@ -129,7 +126,7 @@ export default function UserProfile() {
             </div>
             <div>
               <div>
-                <span>Total In Cart</span>
+                <span>Products In Cart</span>
                 <h2>{cartProduct.cartProduct.length}</h2>
               </div>
               <div

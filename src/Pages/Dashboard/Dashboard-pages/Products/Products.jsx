@@ -16,6 +16,7 @@ export default function Products() {
     unit: "",
     category: "",
   });
+  const [isLoading, setIsLoading] = useState(false);
 
   function createProduct(e) {
     e.preventDefault();
@@ -29,7 +30,7 @@ export default function Products() {
       category: data.category,
     };
     console.log(payload);
-
+    setIsLoading(true);
     axios
       .post(Urls.creatProducts, payload, {
         headers: {
@@ -47,6 +48,7 @@ export default function Products() {
           unit: "",
           category: "",
         });
+        setIsLoading(false);
         alert("Product is uploaded");
       })
       .catch((err) => {
@@ -138,7 +140,7 @@ export default function Products() {
               }
             ></textarea>
           </div>
-          <button className="button" type="submit">
+          <button className={isLoading ? "lButton" : "button"} type="submit">
             Create
           </button>
         </form>

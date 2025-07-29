@@ -39,6 +39,13 @@ const OrdersLoader = () => {
 };
 
 const StyledWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  min-height: 320px;
+
   .loader {
     --duration: 3s;
     --primary: #ff7043;
@@ -50,9 +57,21 @@ const StyledWrapper = styled.div`
     transform-style: preserve-3d;
   }
 
+  @media (max-width: 768px) {
+    .loader {
+      transform: scale(0.8);
+    }
+  }
+
   @media (max-width: 480px) {
     .loader {
-      zoom: 0.44;
+      transform: scale(0.6);
+    }
+  }
+
+  @media (max-width: 320px) {
+    .loader {
+      transform: scale(0.5);
     }
   }
 
@@ -60,15 +79,13 @@ const StyledWrapper = styled.div`
   .loader:after {
     --r: 20.5deg;
     content: "";
-    width: 100px;
-    height: 100px;
+    width: 320px;
+    height: 140px;
     position: absolute;
     right: 32%;
     bottom: -11px;
-    /* change the back groung color on switching from light to dark mood */
     background: #e8e8e8;
     transform: translateZ(200px) rotate(var(--r));
-    -webkit-animation: mask var(--duration) linear forwards infinite;
     animation: mask var(--duration) linear forwards infinite;
   }
 
@@ -100,7 +117,6 @@ const StyledWrapper = styled.div`
       var(--primary-light) 100%
     );
     transform-style: preserve-3d;
-    -webkit-animation: ground var(--duration) linear forwards infinite;
     animation: ground var(--duration) linear forwards infinite;
   }
 
@@ -119,7 +135,6 @@ const StyledWrapper = styled.div`
     position: absolute;
     transform: rotateX(var(--rx)) rotateY(var(--ry))
       translate(var(--x), var(--y)) translateZ(var(--z));
-    -webkit-animation: ground-shine var(--duration) linear forwards infinite;
     animation: ground-shine var(--duration) linear forwards infinite;
   }
 
@@ -135,7 +150,6 @@ const StyledWrapper = styled.div`
     --x: 0;
     --y: 0;
     position: absolute;
-    -webkit-animation: var(--duration) linear forwards infinite;
     animation: var(--duration) linear forwards infinite;
     transform: translate(var(--x), var(--y));
   }
@@ -146,7 +160,6 @@ const StyledWrapper = styled.div`
     height: 48px;
     position: relative;
     transform-style: preserve-3d;
-    -webkit-animation: var(--duration) ease forwards infinite;
     animation: var(--duration) ease forwards infinite;
     transform: rotateY(-47deg) rotateX(-15deg) rotateZ(15deg) scale(0);
   }
@@ -233,133 +246,83 @@ const StyledWrapper = styled.div`
   }
 
   .loader .box0 {
-    -webkit-animation-name: box-move0;
     animation-name: box-move0;
   }
 
   .loader .box0 div {
-    -webkit-animation-name: box-scale0;
     animation-name: box-scale0;
   }
 
   .loader .box1 {
-    -webkit-animation-name: box-move1;
     animation-name: box-move1;
   }
 
   .loader .box1 div {
-    -webkit-animation-name: box-scale1;
     animation-name: box-scale1;
   }
 
   .loader .box2 {
-    -webkit-animation-name: box-move2;
     animation-name: box-move2;
   }
 
   .loader .box2 div {
-    -webkit-animation-name: box-scale2;
     animation-name: box-scale2;
   }
 
   .loader .box3 {
-    -webkit-animation-name: box-move3;
     animation-name: box-move3;
   }
 
   .loader .box3 div {
-    -webkit-animation-name: box-scale3;
     animation-name: box-scale3;
   }
 
   .loader .box4 {
-    -webkit-animation-name: box-move4;
     animation-name: box-move4;
   }
 
   .loader .box4 div {
-    -webkit-animation-name: box-scale4;
     animation-name: box-scale4;
   }
 
   .loader .box5 {
-    -webkit-animation-name: box-move5;
     animation-name: box-move5;
   }
 
   .loader .box5 div {
-    -webkit-animation-name: box-scale5;
     animation-name: box-scale5;
   }
 
   .loader .box6 {
-    -webkit-animation-name: box-move6;
     animation-name: box-move6;
   }
 
   .loader .box6 div {
-    -webkit-animation-name: box-scale6;
     animation-name: box-scale6;
   }
 
   .loader .box7 {
-    -webkit-animation-name: box-move7;
     animation-name: box-move7;
   }
 
   .loader .box7 div {
-    -webkit-animation-name: box-scale7;
     animation-name: box-scale7;
-  }
-
-  @-webkit-keyframes box-move0 {
-    12% {
-      transform: translate(var(--x), var(--y));
-    }
-
-    25%,
-    52% {
-      transform: translate(0, 0);
-    }
-
-    80% {
-      transform: translate(0, -32px);
-    }
-
-    90%,
-    100% {
-      transform: translate(0, 188px);
-    }
   }
 
   @keyframes box-move0 {
     12% {
       transform: translate(var(--x), var(--y));
     }
-
     25%,
     52% {
       transform: translate(0, 0);
     }
-
     80% {
       transform: translate(0, -32px);
     }
-
     90%,
     100% {
       transform: translate(0, 188px);
-    }
-  }
-
-  @-webkit-keyframes box-scale0 {
-    6% {
-      transform: rotateY(-47deg) rotateX(-15deg) rotateZ(15deg) scale(0);
-    }
-
-    14%,
-    100% {
-      transform: rotateY(-47deg) rotateX(-15deg) rotateZ(15deg) scale(1);
     }
   }
 
@@ -367,30 +330,9 @@ const StyledWrapper = styled.div`
     6% {
       transform: rotateY(-47deg) rotateX(-15deg) rotateZ(15deg) scale(0);
     }
-
     14%,
     100% {
       transform: rotateY(-47deg) rotateX(-15deg) rotateZ(15deg) scale(1);
-    }
-  }
-
-  @-webkit-keyframes box-move1 {
-    16% {
-      transform: translate(var(--x), var(--y));
-    }
-
-    29%,
-    52% {
-      transform: translate(0, 0);
-    }
-
-    80% {
-      transform: translate(0, -32px);
-    }
-
-    90%,
-    100% {
-      transform: translate(0, 188px);
     }
   }
 
@@ -398,30 +340,16 @@ const StyledWrapper = styled.div`
     16% {
       transform: translate(var(--x), var(--y));
     }
-
     29%,
     52% {
       transform: translate(0, 0);
     }
-
     80% {
       transform: translate(0, -32px);
     }
-
     90%,
     100% {
       transform: translate(0, 188px);
-    }
-  }
-
-  @-webkit-keyframes box-scale1 {
-    10% {
-      transform: rotateY(-47deg) rotateX(-15deg) rotateZ(15deg) scale(0);
-    }
-
-    18%,
-    100% {
-      transform: rotateY(-47deg) rotateX(-15deg) rotateZ(15deg) scale(1);
     }
   }
 
@@ -429,30 +357,9 @@ const StyledWrapper = styled.div`
     10% {
       transform: rotateY(-47deg) rotateX(-15deg) rotateZ(15deg) scale(0);
     }
-
     18%,
     100% {
       transform: rotateY(-47deg) rotateX(-15deg) rotateZ(15deg) scale(1);
-    }
-  }
-
-  @-webkit-keyframes box-move2 {
-    20% {
-      transform: translate(var(--x), var(--y));
-    }
-
-    33%,
-    52% {
-      transform: translate(0, 0);
-    }
-
-    80% {
-      transform: translate(0, -32px);
-    }
-
-    90%,
-    100% {
-      transform: translate(0, 188px);
     }
   }
 
@@ -460,61 +367,26 @@ const StyledWrapper = styled.div`
     20% {
       transform: translate(var(--x), var(--y));
     }
-
     33%,
     52% {
       transform: translate(0, 0);
     }
-
     80% {
       transform: translate(0, -32px);
     }
-
     90%,
     100% {
       transform: translate(0, 188px);
-    }
-  }
-
-  @-webkit-keyframes box-scale2 {
-    14% {
-      transform: rotateY(-47deg) rotateX(-15deg) rotateZ(15deg) scale(0);
-    }
-
-    22%,
-    100% {
-      transform: rotateY(-47deg) rotateX(-15deg) rotateZ(15deg) scale(1);
     }
   }
 
   @keyframes box-scale2 {
     14% {
-      transform: rotateY(-47deg) rotateX(-15deg) rotateZ(15deg) scale(0);
+      transform: rotateY(-47deg) rotateX(-15deg) rotateZ(15deg) scale(1);
     }
-
     22%,
     100% {
       transform: rotateY(-47deg) rotateX(-15deg) rotateZ(15deg) scale(1);
-    }
-  }
-
-  @-webkit-keyframes box-move3 {
-    24% {
-      transform: translate(var(--x), var(--y));
-    }
-
-    37%,
-    52% {
-      transform: translate(0, 0);
-    }
-
-    80% {
-      transform: translate(0, -32px);
-    }
-
-    90%,
-    100% {
-      transform: translate(0, 188px);
     }
   }
 
@@ -522,30 +394,16 @@ const StyledWrapper = styled.div`
     24% {
       transform: translate(var(--x), var(--y));
     }
-
     37%,
     52% {
       transform: translate(0, 0);
     }
-
     80% {
       transform: translate(0, -32px);
     }
-
     90%,
     100% {
       transform: translate(0, 188px);
-    }
-  }
-
-  @-webkit-keyframes box-scale3 {
-    18% {
-      transform: rotateY(-47deg) rotateX(-15deg) rotateZ(15deg) scale(0);
-    }
-
-    26%,
-    100% {
-      transform: rotateY(-47deg) rotateX(-15deg) rotateZ(15deg) scale(1);
     }
   }
 
@@ -553,30 +411,9 @@ const StyledWrapper = styled.div`
     18% {
       transform: rotateY(-47deg) rotateX(-15deg) rotateZ(15deg) scale(0);
     }
-
     26%,
     100% {
       transform: rotateY(-47deg) rotateX(-15deg) rotateZ(15deg) scale(1);
-    }
-  }
-
-  @-webkit-keyframes box-move4 {
-    28% {
-      transform: translate(var(--x), var(--y));
-    }
-
-    41%,
-    52% {
-      transform: translate(0, 0);
-    }
-
-    80% {
-      transform: translate(0, -32px);
-    }
-
-    90%,
-    100% {
-      transform: translate(0, 188px);
     }
   }
 
@@ -584,30 +421,16 @@ const StyledWrapper = styled.div`
     28% {
       transform: translate(var(--x), var(--y));
     }
-
     41%,
     52% {
       transform: translate(0, 0);
     }
-
     80% {
       transform: translate(0, -32px);
     }
-
     90%,
     100% {
       transform: translate(0, 188px);
-    }
-  }
-
-  @-webkit-keyframes box-scale4 {
-    22% {
-      transform: rotateY(-47deg) rotateX(-15deg) rotateZ(15deg) scale(0);
-    }
-
-    30%,
-    100% {
-      transform: rotateY(-47deg) rotateX(-15deg) rotateZ(15deg) scale(1);
     }
   }
 
@@ -615,30 +438,9 @@ const StyledWrapper = styled.div`
     22% {
       transform: rotateY(-47deg) rotateX(-15deg) rotateZ(15deg) scale(0);
     }
-
     30%,
     100% {
       transform: rotateY(-47deg) rotateX(-15deg) rotateZ(15deg) scale(1);
-    }
-  }
-
-  @-webkit-keyframes box-move5 {
-    32% {
-      transform: translate(var(--x), var(--y));
-    }
-
-    45%,
-    52% {
-      transform: translate(0, 0);
-    }
-
-    80% {
-      transform: translate(0, -32px);
-    }
-
-    90%,
-    100% {
-      transform: translate(0, 188px);
     }
   }
 
@@ -646,30 +448,16 @@ const StyledWrapper = styled.div`
     32% {
       transform: translate(var(--x), var(--y));
     }
-
     45%,
     52% {
       transform: translate(0, 0);
     }
-
     80% {
       transform: translate(0, -32px);
     }
-
     90%,
     100% {
       transform: translate(0, 188px);
-    }
-  }
-
-  @-webkit-keyframes box-scale5 {
-    26% {
-      transform: rotateY(-47deg) rotateX(-15deg) rotateZ(15deg) scale(0);
-    }
-
-    34%,
-    100% {
-      transform: rotateY(-47deg) rotateX(-15deg) rotateZ(15deg) scale(1);
     }
   }
 
@@ -677,30 +465,9 @@ const StyledWrapper = styled.div`
     26% {
       transform: rotateY(-47deg) rotateX(-15deg) rotateZ(15deg) scale(0);
     }
-
     34%,
     100% {
       transform: rotateY(-47deg) rotateX(-15deg) rotateZ(15deg) scale(1);
-    }
-  }
-
-  @-webkit-keyframes box-move6 {
-    36% {
-      transform: translate(var(--x), var(--y));
-    }
-
-    49%,
-    52% {
-      transform: translate(0, 0);
-    }
-
-    80% {
-      transform: translate(0, -32px);
-    }
-
-    90%,
-    100% {
-      transform: translate(0, 188px);
     }
   }
 
@@ -708,30 +475,16 @@ const StyledWrapper = styled.div`
     36% {
       transform: translate(var(--x), var(--y));
     }
-
     49%,
     52% {
       transform: translate(0, 0);
     }
-
     80% {
       transform: translate(0, -32px);
     }
-
     90%,
     100% {
       transform: translate(0, 188px);
-    }
-  }
-
-  @-webkit-keyframes box-scale6 {
-    30% {
-      transform: rotateY(-47deg) rotateX(-15deg) rotateZ(15deg) scale(0);
-    }
-
-    38%,
-    100% {
-      transform: rotateY(-47deg) rotateX(-15deg) rotateZ(15deg) scale(1);
     }
   }
 
@@ -739,30 +492,9 @@ const StyledWrapper = styled.div`
     30% {
       transform: rotateY(-47deg) rotateX(-15deg) rotateZ(15deg) scale(0);
     }
-
     38%,
     100% {
       transform: rotateY(-47deg) rotateX(-15deg) rotateZ(15deg) scale(1);
-    }
-  }
-
-  @-webkit-keyframes box-move7 {
-    40% {
-      transform: translate(var(--x), var(--y));
-    }
-
-    53%,
-    52% {
-      transform: translate(0, 0);
-    }
-
-    80% {
-      transform: translate(0, -32px);
-    }
-
-    90%,
-    100% {
-      transform: translate(0, 188px);
     }
   }
 
@@ -770,30 +502,16 @@ const StyledWrapper = styled.div`
     40% {
       transform: translate(var(--x), var(--y));
     }
-
     53%,
     52% {
       transform: translate(0, 0);
     }
-
     80% {
       transform: translate(0, -32px);
     }
-
     90%,
     100% {
       transform: translate(0, 188px);
-    }
-  }
-
-  @-webkit-keyframes box-scale7 {
-    34% {
-      transform: rotateY(-47deg) rotateX(-15deg) rotateZ(15deg) scale(0);
-    }
-
-    42%,
-    100% {
-      transform: rotateY(-47deg) rotateX(-15deg) rotateZ(15deg) scale(1);
     }
   }
 
@@ -801,29 +519,9 @@ const StyledWrapper = styled.div`
     34% {
       transform: rotateY(-47deg) rotateX(-15deg) rotateZ(15deg) scale(0);
     }
-
     42%,
     100% {
       transform: rotateY(-47deg) rotateX(-15deg) rotateZ(15deg) scale(1);
-    }
-  }
-
-  @-webkit-keyframes ground {
-    0%,
-    65% {
-      transform: rotateX(90deg) rotateY(0deg) translate(-48px, -120px)
-        translateZ(100px) scale(0);
-    }
-
-    75%,
-    90% {
-      transform: rotateX(90deg) rotateY(0deg) translate(-48px, -120px)
-        translateZ(100px) scale(1);
-    }
-
-    100% {
-      transform: rotateX(90deg) rotateY(0deg) translate(-48px, -120px)
-        translateZ(100px) scale(0);
     }
   }
 
@@ -833,32 +531,14 @@ const StyledWrapper = styled.div`
       transform: rotateX(90deg) rotateY(0deg) translate(-48px, -120px)
         translateZ(100px) scale(0);
     }
-
     75%,
     90% {
       transform: rotateX(90deg) rotateY(0deg) translate(-48px, -120px)
         translateZ(100px) scale(1);
     }
-
     100% {
       transform: rotateX(90deg) rotateY(0deg) translate(-48px, -120px)
         translateZ(100px) scale(0);
-    }
-  }
-
-  @-webkit-keyframes ground-shine {
-    0%,
-    70% {
-      opacity: 0;
-    }
-
-    75%,
-    87% {
-      opacity: 0.2;
-    }
-
-    100% {
-      opacity: 0;
     }
   }
 
@@ -867,26 +547,12 @@ const StyledWrapper = styled.div`
     70% {
       opacity: 0;
     }
-
     75%,
     87% {
       opacity: 0.2;
     }
-
     100% {
       opacity: 0;
-    }
-  }
-
-  @-webkit-keyframes mask {
-    0%,
-    65% {
-      opacity: 0;
-    }
-
-    66%,
-    100% {
-      opacity: 1;
     }
   }
 
@@ -895,7 +561,6 @@ const StyledWrapper = styled.div`
     65% {
       opacity: 0;
     }
-
     66%,
     100% {
       opacity: 1;

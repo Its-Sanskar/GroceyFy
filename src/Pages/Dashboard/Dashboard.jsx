@@ -6,6 +6,7 @@ import { userData } from "../../StoreData/storeDetails";
 import { CgProfile } from "react-icons/cg";
 import { MdOutlineAddBusiness } from "react-icons/md";
 import { BsFillBoxSeamFill } from "react-icons/bs";
+import { motion } from "motion/react";
 
 export default function Dashboard() {
   const { user } = useRecoilValue(userData);
@@ -26,19 +27,25 @@ export default function Dashboard() {
           </div>
           {/* <hr style={{ width: "30vh", color: "var(--secondry)" }} /> */}
           <Link to="Profile">
-            <li>
+            <motion.li>
               <CgProfile size={30} /> <br /> Profile
-            </li>
+            </motion.li>
           </Link>
           <Link to="Products">
-            <MdOutlineAddBusiness size={30} /> <li>Products</li>
+            <motion.li>
+              <MdOutlineAddBusiness size={30} />
+              Products
+            </motion.li>
           </Link>
 
           <Link to="Orders">
-            <BsFillBoxSeamFill /> <li>Orders</li>
+            <motion.li>
+              <BsFillBoxSeamFill />
+              Orders
+            </motion.li>
           </Link>
         </ul>
-        <div>
+        <div className={style.pages}>
           <Outlet />
         </div>
       </div>

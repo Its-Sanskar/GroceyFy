@@ -20,11 +20,12 @@ export default function SideBar() {
       setsideBarTgl(false);
     }
   };
-  
+  const sideBarWidth = window.innerWidth <= 600 ? 200 : 350;
   return (
     <motion.div
       initial={{ x: 0 }}
-      animate={{ x: sideBarTgl ? 350 : 0 }}
+      animate={{ x: sideBarTgl ? sideBarWidth : 0 }}
+      // transition={{ type: "spring", stiffness: 300 }}
       className={style.container}
     >
       <div className={style.placeholder}>
