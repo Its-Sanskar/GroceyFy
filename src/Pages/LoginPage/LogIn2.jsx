@@ -7,6 +7,7 @@ import { Avatars, PagesToggle } from "../../StoreData/PagesToggle";
 import axios from "axios";
 import { Urls } from "../../StoreData/Apis";
 import { useNavigate } from "react-router";
+import { userData } from "../../StoreData/storeDetails";
 
 export default function LogIn() {
   const [pagesTgl, setPagesTgl] = useRecoilState(PagesToggle);
@@ -15,6 +16,7 @@ export default function LogIn() {
   const [error, setError] = useState("");
   const [isLoading, setIsloading] = useState(false);
   const [showAvatar, setShowAvatar] = useRecoilState(Avatars);
+  const [userInfo, setUserInfo] = useRecoilState(userData);
 
   const navigate = useNavigate();
   const { tabs } = pagesTgl;
@@ -41,12 +43,19 @@ export default function LogIn() {
         password,
       })
       .then((respo) => {
+        const userData = respo.data;
         console.log(respo);
         setError(null);
         alert(respo.data.message);
         setPagesTgl({ ...pagesTgl, logIn: false, tab: "/" });
-        localStorage.setItem("User", JSON.stringify(respo.data));
+        localStorage.setItem("User", JSON.stringify(userData));
         // navigate(0);
+        setUserInfo({
+          ...userInfo,
+          user: userData.user,
+          isAuthenticated: true,
+          token: userData.accessToken,
+        });
         setShowAvatar({ ...showAvatar, avatarBox: true });
       })
       .catch((e) => {

@@ -6,7 +6,7 @@ import LogIn from "../../Pages/LoginPage/LogIn2";
 import { AnimatePresence } from "motion/react";
 import SignUp from "../../Pages/SignUp/SignUp";
 import { useRecoilState, useRecoilValue } from "recoil";
-import { PagesToggle } from "../../StoreData/PagesToggle";
+import { Avatars, PagesToggle } from "../../StoreData/PagesToggle";
 import { userData } from "../../StoreData/storeDetails";
 import { motion } from "motion/react";
 import { StoreData } from "../../StoreData/productData";
@@ -19,6 +19,8 @@ export default function NavBar() {
   const tab = pagesTgl.tab;
   const tabs = pagesTgl.tabs;
   const isSeller = user?.role === "SELLER";
+  console.log(user);
+
   useEffect(() => {
     if (pagesTgl.showQty == true) {
       setTimeout(() => {

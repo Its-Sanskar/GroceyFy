@@ -24,4 +24,3 @@ export const userData = atom({
     address: "Jabalpur, Barela (M.P)",
   },
 });
-

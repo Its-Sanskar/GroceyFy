@@ -20,7 +20,7 @@ export default function SideBar() {
       setsideBarTgl(false);
     }
   };
-
+  
   return (
     <motion.div
       initial={{ x: 0 }}
