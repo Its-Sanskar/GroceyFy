@@ -17,6 +17,7 @@ export const PagesToggle = atom({
     showQty: false,
     notify: false,
     orderSuccess: false,
+    detailCollector: false,
     tab: "",
     tabs: {
       "/": 0,

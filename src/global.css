@@ -18,13 +18,38 @@ body {
   padding: 10px;
   border-radius: 10px;
   margin: 8px;
-  font-weight: 600;
+  font-weight: 800;
   color: #ffffff;
   font-size: 16px;
   outline: none;
   border: none;
-  
+  cursor: pointer;
 }
+.lButton {
+  background: linear-gradient(90deg, var(--CTA), var(--Accent), var(--CTA));
+  background-size: 300% 100%;
+  background-position: 0% 50%;
+  animation: moveGradient 1s linear infinite alternate;
+  text-align: center;
+  padding: 10px;
+  border-radius: 10px;
+  margin: 8px;
+  font-weight: 800;
+  color: #ffffff;
+  font-size: 16px;
+  outline: none;
+  border: none;
+  cursor: pointer;
+}
+@keyframes moveGradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 100% 50%;
+  }
+}
+/* className={loading.BtnLoading ? "lButton" : "button"} */
 .loader {
   margin: auto;
   display: flex;

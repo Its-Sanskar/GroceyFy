@@ -13,14 +13,20 @@ function userDataStor() {
   }
 }
 // console.log(userDataStor().user.name);
-
+function details() {
+  if (JSON.parse(localStorage.getItem("detail"))) {
+    const detail = JSON.parse(localStorage.getItem("detail"));
+    return detail;
+  } else {
+    return null;
+  }
+}
 export const userData = atom({
   key: "UserData",
   default: {
     user: userDataStor().user,
     token: userDataStor().accessToken,
     isAuthenticated: !!userDataStor().accessToken,
-    phone: "9340188888",
-    address: "Jabalpur, Barela (M.P)",
+    details: details(),
   },
 });

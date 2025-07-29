@@ -33,15 +33,11 @@
   font-weight: 500;
   color: var(--Text);
 }
-.btn {
-  background: linear-gradient(90deg, var(--CTA) 10%, var(--Accent) 100%);
+.btn > button {
   width: 500px;
-  text-align: center;
-  padding: 5px;
   border-radius: 10px;
-  margin: 8px;
+  margin: 5px;
   /* color: var(--TEXT); */
-  font-weight: 800;
   color: #ffffff;
   font-size: 30px;
   cursor: pointer;

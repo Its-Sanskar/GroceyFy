@@ -105,14 +105,12 @@ export default function ProductDetailPage() {
               </div>
             </div>
             <motion.div whileTap={{ scale: 0.97 }} className={style.btn}>
-              Buy Now
+              <button className="button"> Buy Now</button>
             </motion.div>
-            <motion.div
-              whileTap={{ scale: 0.97 }}
-              className={style.btn}
-              onClick={cartBtnHdl}
-            >
-              Add To Cart
+            <motion.div whileTap={{ scale: 0.97 }} className={style.btn}>
+              <button className="button" onClick={cartBtnHdl}>
+                Add To Cart
+              </button>
             </motion.div>
           </div>
         </div>

@@ -95,7 +95,7 @@ export default function SignUp() {
               setPassword(e.target.value);
             }}
           />
-          <button type="submit" className="button">
+          <button type="submit" className={loading ? "lButton" : "button"}>
             {loading ? "Signing up..." : "Sign Up"}
           </button>
         </form>

@@ -53,8 +53,8 @@ export default function LogIn() {
         setUserInfo({
           ...userInfo,
           user: userData.user,
-          isAuthenticated: true,
           token: userData.accessToken,
+          isAuthenticated: true,
         });
         setShowAvatar({ ...showAvatar, avatarBox: true });
       })
@@ -105,8 +105,12 @@ export default function LogIn() {
         <input type="email" placeholder="Email" onChange={emailInput} />
 
         <input type="password" placeholder="Password" onChange={passInput} />
-        <button type="submit" className="button" onClick={submit}>
-          {isLoading ? "Logging... IN" : "LogIn"}
+        <button
+          type="submit"
+          className={isLoading ? "lButton" : "button"}
+          onClick={submit}
+        >
+          {isLoading ? "Logging..." : "LogIn"}
         </button>
       </motion.div>
     </motion.div>

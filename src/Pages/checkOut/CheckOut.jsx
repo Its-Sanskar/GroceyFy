@@ -7,19 +7,23 @@ import { userData } from "../../StoreData/storeDetails";
 import style from "./CheckOut.module.css";
 import CheckOutL from "../../Components/Loader/CheckOutL/CheckOutL";
 import { decimalizer } from "../../StoreData/utilityFunctions";
-import { motion } from "motion/react";
-import OrderSuccess2 from "../../Components/OrderSuccess/OrderSuccess2";
 import { PagesToggle } from "../../StoreData/PagesToggle";
+import DetailsCol from "../../Components/Details/DetailsCol";
+import { AnimatePresence } from "motion/react";
+import OrderSuccess from "../../Components/OrderSuccess/OrderSuccess";
 export default function CheckOut() {
   const productData = useRecoilValue(StoreData);
-  const { token, phone, address } = useRecoilValue(userData);
+  const { token, details } = useRecoilValue(userData);
   const [checkOutP, setCheckOutP] = useState([]);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState({
+    ProLoading: false,
+    BtnLoading: false,
+  });
   const [price, setPrice] = useState({ mrp: 0, sellPrice: 0 });
-  const [orderSuccess, setOrderSuccess] = useRecoilState(PagesToggle);
+  const [toggle, setToggle] = useRecoilState(PagesToggle);
   console.log(productData.cartProduct);
   useEffect(() => {
-    setLoading(true);
+    setLoading({ ...loading, ProLoading: true });
     axios
       .get(Urls.products)
       .then((respo) => {
@@ -46,7 +50,11 @@ export default function CheckOut() {
         setPrice({ ...price, mrp, sellPrice });
 
         setCheckOutP(pro);
-        setLoading(false);
+        setLoading({ ...loading, ProLoading: false });
+        if (!details) {
+          setToggle({ ...toggle, detailCollector: true });
+        }
+        console.log(details);
       })
       .catch((e) => {
         console.log(e);
@@ -55,13 +63,14 @@ export default function CheckOut() {
   console.log(checkOutP);
 
   function placeOrderHdl() {
+    setLoading({ ...loading, BtnLoading: true });
     const payLoad = {
       products: productData.cartProduct.map((product) => ({
         id: product.id,
         quantity: product.qty,
       })),
-      phone: phone,
-      address: address,
+      phone: details.phoneNo,
+      address: details.address,
     };
     console.log(payLoad);
 
@@ -73,10 +82,13 @@ export default function CheckOut() {
       })
       .then((respo) => {
         console.log(respo);
-        setOrderSuccess({ ...orderSuccess, orderSuccess: true });
+        setToggle({ ...toggle, orderSuccess: true });
       })
       .catch((e) => {
         console.log(e);
+      })
+      .finally(() => {
+        setLoading({ ...loading, BtnLoading: false });
       });
   }
   console.log(checkOutP);
@@ -86,7 +98,7 @@ export default function CheckOut() {
     <div className="container">
       <div className={style.container}>
         <h1>Check Out</h1>
-        {loading ? (
+        {loading.ProLoading ? (
           <CheckOutL />
         ) : (
           checkOutP.map((product) => (
@@ -114,11 +126,17 @@ export default function CheckOut() {
         </div>
       </div>
       <div className={style.button}>
-        <button className="button" onClick={placeOrderHdl}>
+        <button
+          className={loading.BtnLoading ? "lButton" : "button"}
+          onClick={placeOrderHdl}
+        >
           Order Place
         </button>
       </div>
-      <OrderSuccess2 price={price} />
+      <AnimatePresence>
+        {toggle.orderSuccess && <OrderSuccess price={price} />}
+        {toggle.detailCollector && <DetailsCol />}
+      </AnimatePresence>
     </div>
   );
 }

@@ -17,7 +17,7 @@ import { MdEdit } from "react-icons/md";
 import { LiaUserEditSolid } from "react-icons/lia";
 
 export default function UserProfile() {
-  const { user, token, phone, address } = useRecoilValue(userData);
+  const { user, token, details } = useRecoilValue(userData);
   const [profile, setProfile] = useState({});
   const cartProduct = useRecoilValue(StoreData);
   const [profileData, setProfileData] = useState({
@@ -87,11 +87,11 @@ export default function UserProfile() {
                 <span>
                   <FiPhone color="var(--primary)" />
                   +91
-                  {phone}
+                  {details.phoneNo}
                 </span>{" "}
                 <span>
                   <CiLocationOn color="var(--primary)" />
-                  {address}
+                  {details.address}
                 </span>
               </div>
             </div>
