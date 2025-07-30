@@ -68,27 +68,27 @@ export default function UserProfile() {
         </div>
         <div className={style.profileDtl}>
           <div className={style.topBar}>
-            <img
-              src={avatar.avatar}
+            <img src={avatar.avatar} />
+            {/* <LiaUserEditSolid className={style.edit} size={50} /> */}
+            <MdEdit
+              className={style.edit}
+              size={50}
               onClick={() => {
                 setAvatar({ ...avatar, avatarBox: true });
               }}
             />
-            {/* <LiaUserEditSolid className={style.edit} size={50} /> */}
-            <MdEdit className={style.edit} size={50} />
 
             <div>
               <h2>{profile.name}</h2>
               <span>{profile.email}</span>
-              <div>
+              <div className={style.details}>
                 <span>
                   <FiPhone color="var(--primary)" />
-                  +91
-                  {details.phoneNo}
-                </span>{" "}
+                  +91{details?.phoneNo ? details.phoneNo : "__________"}
+                </span>
                 <span>
                   <CiLocationOn color="var(--primary)" />
-                  {details.address}
+                  {details?.address}
                 </span>
               </div>
             </div>

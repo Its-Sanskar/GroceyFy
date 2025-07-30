@@ -25,7 +25,6 @@ export default function SideBar() {
     <motion.div
       initial={{ x: 0 }}
       animate={{ x: sideBarTgl ? sideBarWidth : 0 }}
-      // transition={{ type: "spring", stiffness: 300 }}
       className={style.container}
     >
       <div className={style.placeholder}>

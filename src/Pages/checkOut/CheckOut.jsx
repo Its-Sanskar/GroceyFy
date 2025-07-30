@@ -13,7 +13,7 @@ import { AnimatePresence } from "motion/react";
 import OrderSuccess from "../../Components/OrderSuccess/OrderSuccess";
 export default function CheckOut() {
   const productData = useRecoilValue(StoreData);
-  const { token, details } = useRecoilValue(userData);
+  const { token, details, isAuthenticated } = useRecoilValue(userData);
   const [checkOutP, setCheckOutP] = useState([]);
   const [loading, setLoading] = useState({
     ProLoading: false,
@@ -51,9 +51,7 @@ export default function CheckOut() {
 
         setCheckOutP(pro);
         setLoading({ ...loading, ProLoading: false });
-        if (!details) {
-          setToggle({ ...toggle, detailCollector: true });
-        }
+
         console.log(details);
       })
       .catch((e) => {
@@ -63,6 +61,9 @@ export default function CheckOut() {
   console.log(checkOutP);
 
   function placeOrderHdl() {
+    if (!details && isAuthenticated) {
+      setToggle({ ...toggle, detailCollector: true });
+    }
     setLoading({ ...loading, BtnLoading: true });
     const payLoad = {
       products: productData.cartProduct.map((product) => ({
@@ -135,7 +136,7 @@ export default function CheckOut() {
       </div>
       <AnimatePresence>
         {toggle.orderSuccess && <OrderSuccess price={price} />}
-        {toggle.detailCollector && <DetailsCol />}
+        {/* {toggle.detailCollector && <DetailsCol />} */}
       </AnimatePresence>
     </div>
   );

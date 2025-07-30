@@ -1,11 +1,13 @@
 import React from "react";
 import style from "./PlaceHolder.module.css";
 import { useRecoilState, useRecoilValue } from "recoil";
-import { Avatars } from "../../StoreData/PagesToggle";
+import { Avatars, PagesToggle } from "../../StoreData/PagesToggle";
 import { motion, AnimatePresence, scale } from "motion/react";
+import DetailsCol from "../../Components/Details/DetailsCol";
 
 export default function PlaceHolder() {
   const [avatar, setAvatar] = useRecoilState(Avatars);
+  const [toggle, setToggle] = useRecoilState(PagesToggle);
   return (
     <AnimatePresence>
       {avatar.avatarBox && (
@@ -34,14 +36,16 @@ export default function PlaceHolder() {
                 src={png}
                 key={i}
                 onClick={() => {
-                  setAvatar({ ...avatar, avatar: png, avatarBox: false });
                   localStorage.setItem("avatar", png);
+                  setAvatar({ ...avatar, avatar: png, avatarBox: false });
+                  setToggle({ ...toggle, detailCollector: true });
                 }}
               />
             ))}
           </motion.div>
         </motion.div>
       )}
+      {toggle.detailCollector && <DetailsCol />}
     </AnimatePresence>
   );
 }

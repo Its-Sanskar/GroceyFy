@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useRecoilState } from "recoil";
 import { PagesToggle } from "../../StoreData/PagesToggle";
 import { motion } from "motion/react";
@@ -7,7 +7,10 @@ import { userData } from "../../StoreData/storeDetails";
 export default function DetailsCol() {
   const [detailCol, setDetailCol] = useRecoilState(PagesToggle);
   const [user, setUser] = useRecoilState(userData);
-  const [details, setDetail] = useState({ address: undefined, phoneNo: 0 });
+  const [details, setDetail] = useState({
+    address: undefined,
+    phoneNo: undefined,
+  });
   const [error, setError] = useState(null);
   const detailBtnHandler = (e) => {
     e.preventDefault();
@@ -23,6 +26,22 @@ export default function DetailsCol() {
       setError("Please Enter Address");
     }
   };
+  const isProfilePage = detailCol.tab == "/Profile";
+
+  useEffect(() => {
+    if (isProfilePage) {
+      setDetail({
+        ...details,
+        address: user.details.address,
+        phoneNo: user.details.phoneNo,
+      });
+    } else {
+      setDetail({
+        address: undefined,
+        phoneNo: undefined,
+      });
+    }
+  }, []);
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -43,6 +62,7 @@ export default function DetailsCol() {
           <input
             type="text"
             placeholder="Address"
+            value={details.address}
             onChange={(e) => {
               setDetail({ ...details, address: e.target.value });
             }}
@@ -50,6 +70,7 @@ export default function DetailsCol() {
           <input
             type="number"
             placeholder="Enter Phone Number"
+            value={details.phoneNo}
             onChange={(e) => {
               setDetail({ ...details, phoneNo: e.target.value });
             }}

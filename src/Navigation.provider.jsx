@@ -29,7 +29,14 @@ export default function Navigationprovider() {
         <Route path="/" Component={Home}></Route>
         <Route path="/Product/:id" Component={ProductDetailPage}></Route>
         <Route path="/Cart" Component={Cart}></Route>
-        <Route path="/Profile" Component={UserProfile}></Route>
+        <Route
+          path="/Profile"
+          element={
+            <AuthenticatedRoutes>
+              <UserProfile />
+            </AuthenticatedRoutes>
+          }
+        ></Route>
         <Route
           path="/Check_Out"
           element={
@@ -57,15 +64,8 @@ export default function Navigationprovider() {
         >
           <Route path="" element={<Navigate to="Products" />} />
           <Route path="Products" Component={Products}></Route>
-          <Route
-            path="Orders"
-            element={
-              <AuthenticatedRoutes>
-                <Orders />
-              </AuthenticatedRoutes>
-            }
-          ></Route>
-          <Route path="Profile" Component={Profile}></Route>
+          <Route path="Orders" element={<Orders />}></Route>
+          <Route path="Profile" element={<Profile />}></Route>
         </Route>
       </Routes>
     </BrowserRouter>

@@ -7,6 +7,27 @@ function avatarProvider() {
     return "/PlaceHolder/PlaceHolder.jpg";
   }
 }
+function tabIndicator() {
+  if (window.innerWidth < 600) {
+    const phoneTab = {
+      "/": 0,
+      "/logIn": 46,
+      "/Orders": 50,
+      "/signUp": 96,
+      "/Profile": 102,
+    };
+    return phoneTab;
+  } else {
+    const desktopTab = {
+      "/": 0,
+      "/logIn": 80,
+      "/Orders": 85,
+      "/signUp": 164,
+      "/Profile": 173,
+    };
+    return desktopTab;
+  }
+}
 export const PagesToggle = atom({
   key: "pagesTgl",
   default: {
@@ -19,13 +40,7 @@ export const PagesToggle = atom({
     orderSuccess: false,
     detailCollector: false,
     tab: "",
-    tabs: {
-      "/": 0,
-      "/logIn": 80,
-      "/Orders": 85,
-      "/signUp": 164,
-      "/Profile": 173,
-    },
+    tabs: tabIndicator(),
   },
 });
 export const Avatars = atom({

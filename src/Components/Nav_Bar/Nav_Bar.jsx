@@ -6,7 +6,7 @@ import LogIn from "../../Pages/LoginPage/LogIn2";
 import { AnimatePresence } from "motion/react";
 import SignUp from "../../Pages/SignUp/SignUp";
 import { useRecoilState, useRecoilValue } from "recoil";
-import { Avatars, PagesToggle } from "../../StoreData/PagesToggle";
+import { PagesToggle } from "../../StoreData/PagesToggle";
 import { userData } from "../../StoreData/storeDetails";
 import { motion } from "motion/react";
 import { StoreData } from "../../StoreData/productData";
@@ -46,7 +46,6 @@ export default function NavBar() {
     tab.startsWith("/Product/") ||
     tab == "/Check_Out" ||
     tab.startsWith("/Dashboard/");
-  console.log(tab);
 
   return (
     <div className={style.container}>
