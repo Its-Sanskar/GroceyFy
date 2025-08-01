@@ -31,8 +31,12 @@ export default function SignUp() {
         console.log(reso);
         alert("Successfully Registered");
         setError(null);
-        setSignUpTgl({ ...signUpTgl, signUp: false });
-        setSignUpTgl({ ...signUpTgl, logIn: true, tab: "/logIn" });
+        setSignUpTgl({
+          ...signUpTgl,
+          signUp: false,
+          logIn: true,
+          tab: "/logIn",
+        });
       })
       .catch((e) => {
         setError(e.response.data.message);
