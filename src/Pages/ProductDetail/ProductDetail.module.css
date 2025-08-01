@@ -34,19 +34,20 @@
   color: var(--Text);
 }
 .btn > button {
-  width: 500px;
+  width: 40vw;
   border-radius: 10px;
   margin: 5px;
-  /* color: var(--TEXT); */
   color: #ffffff;
   font-size: 30px;
   cursor: pointer;
+  padding: 5px;
 }
 .detail {
   display: flex;
   flex-direction: column;
   justify-content: space-around;
   align-items: baseline;
+  margin-left: 2%;
 }
 .price {
   display: flex;
