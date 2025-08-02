@@ -1,6 +1,5 @@
 .container {
   display: flex;
-  /* justify-content: center; */
 }
 .image {
   border-radius: 100px;
@@ -32,6 +31,7 @@
   font-size: 25px;
   font-weight: 500;
   color: var(--Text);
+  width: 100vw;
 }
 .btn > button {
   width: 40vw;
@@ -65,7 +65,7 @@
 .counter > button {
   cursor: pointer;
   width: 50px;
-  outline: none;
+  padding: 2px;
   border: none;
 }
 @media only screen and (max-width: 600px) {
@@ -79,13 +79,14 @@
     width: 70%;
   }
   .detail {
-    width: 70%;
+    width: 80%;
   }
   .price {
     flex-direction: column;
     font-size: 20px;
   }
-  .btn {
-    width: 96%;
+  .btn > button {
+    width: 70vw;
+    font-size: 25px;
   }
 }
